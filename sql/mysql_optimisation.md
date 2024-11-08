@@ -200,3 +200,24 @@ In this query we select from `b` and then join `a`, but the query plan for this 
 ```
 
 So it selects from `a` first and then `b`, which is opposite. As MySQL chooses what it thinks is the best plan, based on number of disk reads.
+
+
+## Configuration
+- Storage Engine
+  - `innodb` should be the default. `myisam` is deprecated and can cause crashes.
+- `innodb_buffer_pool_size` - Used to store table caches, index caches, and other in-memory data
+  - General rule of thumb is around 75% of available RAM. Needs frequent adjustment though.
+  - [Calculate correct size](https://scalegrid.io/blog/mysql-innodb-buffer-pool-size/)
+- `innodb_data_file_path` - Path to innodb data file
+  - Set it to extend automatically, e.g. `innodb_data_file_path = ibdata1:12M:autoextend:max:10G`
+- `innodb_log_file_size` - Used to recover data in event of a crash. Larger file = less time to recover.
+  - General rule of thumn is around 25% of the `innodb_buffer_pool_size`
+- `innodb_log_buffer_size` - Used to write to the log file
+  - Advisable to leave as default `8M`
+- `innodb_flush_log_at_trx_commit` - Method of flushing log when transaction commits
+  - `1` for ACID compliance.
+  - `0` and `2` for faster writes but no ACID compliance [See](https://docs.netapp.com/us-en/ontap-apps-dbs/mysql/mysql-innodb_flush_log_at_trx_commit.html)
+- `innodb_lock_wait_timeout`
+  - Time to wait for row locks. Default is `50` seconds
+- `innodb_flush_method`
+  - Method of flushing data. Default in Linux `fsync`. Recommened to change to `O_DIRECT` or `O_DSYNC` for faster I/O. Conduct benchmarks to see which is better for you.
