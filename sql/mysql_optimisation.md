@@ -221,3 +221,42 @@ So it selects from `a` first and then `b`, which is opposite. As MySQL chooses w
   - Time to wait for row locks. Default is `50` seconds
 - `innodb_flush_method`
   - Method of flushing data. Default in Linux `fsync`. Recommened to change to `O_DIRECT` or `O_DSYNC` for faster I/O. Conduct benchmarks to see which is better for you.
+
+
+## OPTIMIZE
+
+The `OPTIMIZE` command can be used to optimize fragmented tables (often caused by large amounts of deletes and space not being reclaimed).
+
+To identify tables possibly in need of optimisation, you can run:
+
+```
+SELECT table_name, 
+ROUND(data_length/1024/1024) as data_length_mb, 
+ROUND(data_free/1024/1024) as data_free_mb 
+FROM information_schema.tables 
+WHERE round(data_free/1024/1024) > 500 
+ORDER BY data_free_mb;
+```
+
+- `data_length` is the total size of the table
+- `data_free` is the total amount of unused space in that table (high value means possible fragmentation)
+
+For example:
+
+```
++------------+----------------+--------------+
+| table_name | data_length_mb | data_free_mb |
++------------+----------------+--------------+
+| BENEFITS   |           7743 |         4775 |
+| DEPARTMENT |          14295 |        13315 |
+| EMPLOYEE   |          21633 |        19834 |
++------------+----------------+--------------+
+```
+
+Tables with high free space can be optmised by running `OPTIMIZE <table> <table> <table> ...`
+
+For tables using the InnoDB engine (which will be the vast majority, if not all), this will basically rebuild the table from scratch tor eclaim the space.
+
+This can take some time for big tables and use lots of resources on the DB server, as well as locking the tables as they are rebuilt, so should be done during downtime.
+
+A general rule of thumnb you can follow, is automatically optimize small tables (<200M) every week or so. And manually do the bigger ones as and when their free space grows.
