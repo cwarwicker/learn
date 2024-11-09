@@ -24,3 +24,4 @@
 ![Diagram](https://cdn.prod.website-files.com/5e3d3268a134a79339be8368/614ba1cfd9acd6145cb8e40a_uAu4ImYzHCj-oM6BGC_hNY9ihgjHnGA-mEfzhyV3HnPGJgqgHLKjdow8nBwLoOG4T7Mxl8R-JUR5fMRUg62hAG-qbD9vCOO5nyHulVZPUrfQXzwfEzARmFJfvgHXYnLdqvxGA-EG%3Ds0.png)
 
 - Group of geographically selected servers used to deliver caches faster to those areas of the world
+- Improves availability and redundancy, as well as obvious load times and bandwidth
