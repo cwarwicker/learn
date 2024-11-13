@@ -8,7 +8,7 @@
 
 ## Server-Side Caching
 
-![Diagram](https://cdn.prod.website-files.com/5e3d3268a134a79339be8368/619aa51be551aa114f63a0d1_d23Q1oYdBnNc9v98gQuXPtPZIleebNUrxFxC6Biny34xFnXYgRfYweERMI40MA477oeDNM8ZOukXvkkSZZfspbkriaRI-5FQsgHYIOlaA1fnmkjfzHea76NBlT5lz6mGZonOuYJz.png)
+![Diagram](https://raw.githubusercontent.com/cwarwicker/learn/refs/heads/prime/images/caching.png)
 
 - Caching the data on the web server
 - Saves processing time as it can send the compiled file/end result from last time without going processing things again
@@ -21,7 +21,7 @@
 
 ### CDN Caching
 
-![Diagram](https://cdn.prod.website-files.com/5e3d3268a134a79339be8368/614ba1cfd9acd6145cb8e40a_uAu4ImYzHCj-oM6BGC_hNY9ihgjHnGA-mEfzhyV3HnPGJgqgHLKjdow8nBwLoOG4T7Mxl8R-JUR5fMRUg62hAG-qbD9vCOO5nyHulVZPUrfQXzwfEzARmFJfvgHXYnLdqvxGA-EG%3Ds0.png)
+![Diagram](https://github.com/cwarwicker/learn/blob/prime/images/cdn.png?raw=true)
 
 - Group of geographically selected servers used to deliver caches faster to those areas of the world
 - Improves availability and redundancy, as well as obvious load times and bandwidth
