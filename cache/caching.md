@@ -10,11 +10,13 @@
 
 ![Diagram](https://raw.githubusercontent.com/cwarwicker/learn/refs/heads/prime/images/caching.png)
 
-- Caching the data on the web server
+- Caching the data on the server
 - Saves processing time as it can send the compiled file/end result from last time without going processing things again
+- Example: Varnish (A "reverse caching proxy" which can sit in front of the web server(s) and deliver cached data.
 
 ### Object Caching
-- Storing database query results, so that they don't have to be exectued each time
+- Storing database query results, so that they don't have to be executed each time to retrieve the data.
+- Example: Redis, memcached are both key-value stores which can be used for object caching
 
 ### OPcode Caching
 - Extension for PHP which compiles the source code into bytecodes so that after the first time it's requested, it responds with the pre-compiled version instead of compiling it again at run-time
