@@ -41,9 +41,9 @@
 	```
  	- The `response` is generated in the following way:
     	```
-	HA1 = MD5(username:realm:password)
-	HA2 = MD5(method:digestURI)
-	response = MD5(HA1:nonce:HA2)
+		HA1 = MD5(username:realm:password)
+		HA2 = MD5(method:digestURI)
+		response = MD5(HA1:nonce:HA2)
      	```
 - So this is slightly more secure than Basic auth, however MD5 hashing is basically obsolete these days, so not much better.
 - It's recommended to use a more secure method, such as OAuth.
