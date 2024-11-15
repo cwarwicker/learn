@@ -74,7 +74,7 @@
 
 
 ### OAuth (2.0)
-![Example](/images/oauth.png)
+![Example](/images/oauth.jpg)
 - OAuth is an open standard for authorization which works over HTTPS and authorizes clients with access tokens, created for SSO. It is not a protocol. It is a framework you can follow.
 - Prior to OAuth, authenticating via different services meant the server actually logging into your account (e.g. Google) with the user/pass you provided.
 - In OAuth, the client talks to their identity provider, which generates a token, which it hands off to the application to authenticate the user. The application trusts the identify server, as it is signed.
