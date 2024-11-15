@@ -59,7 +59,7 @@
 	- The token sits within the client's local storage and continues to work until they logout or it expires.
 	- If the user tries to access different parts of the server, the token is exchanged and access granted/denied based on that.
 
-## JWT (JSON Web Token)
+### JWT (JSON Web Token)
 ![Example](/images/jwt.png)
 
 - JWT is a special form of Token-Based Authentication.
@@ -73,19 +73,51 @@
 - This final token is then typically used in the `Authorization` header as a `Bearer` token, e.g. `Authorization: Bearer <token>`
 
 
-## OAuth
+### OAuth (2.0)
+![Example](/images/oauth.png)
+- OAuth is an open standard for authorization which works over HTTPS and authorizes clients with access tokens, created for SSO. It is not a protocol. It is a framework you can follow.
+- Prior to OAuth, authenticating via different services meant the server actually logging into your account (e.g. Google) with the user/pass you provided.
+- In OAuth, the client talks to their identity provider, which generates a token, which it hands off to the application to authenticate the user. The application trusts the identify server, as it is signed.
+- OAuth allows applications to obtain access to specific parts (scopes) of a user's data, without giving away the password or all their data.
+- Tokens and refresh tokens are provided (refresh token allows you to get a new token)
+  	- These tokens can be in any format. E.g. JWTs. The implementation is up to you.
+- Process:
+  	- Application requests authorization from user
+  	- User authorizes the application to access their data
+  	- Application presents proof of authorization to server to get a token
+  	- Token is restricted to only access what the user authorized for that application
+- Key concepts:
+  	- Scopes - Bundles of permissions asked for when requesting the token. E.g. "This application will be able to - read your posts, see who you follow, post for you, etc..."
+  	- Actors:
+  	  	- Resource Owner - Owns the data in the resource server, e.g. you are the Resource Owner of your Google Photos account
+  	  	- Resource Server - The API which stores the data the application wants access to, e.g. Google Photos API
+  	  	- Client - The application what wants access to the data, e.g. Photo editing software requesting access to photos
+  	  	- Authorization Server - The server responsible for authernticating and issuing tokens, e.g. Google OAuth Server
 
+
+## OpenID Connect (OIDC)
+- OpenID Connect was built on top of OAuth 2.0 but with an authentication focus, for SSO.
+- It includes an `id_token` and a `UserInfo` endpoint to receive user attributes, using standardised scopes and claims
+- Scopes:
+	- Pre-defined permissions that speciofy what info is being requested, e.g. `openid`, `profile`, `email`, `address`, `phone`, as well as custom scopes.
+- Claims:
+	- Individual pieces of info (attributes) returned as part of the `id_token` or from `UserInfo` endpoint, e.g. from the `profile` scope: `"name": "Conn Warwicker", "gender": "M"`
+
+
+### Difference between OAuth and OIDC
+- Where OAuth focuses more on authorization for specific resources, e.g. API/Application permissions, OIDC is more for authentication and SSO, including user data to identify the user.
+- OAuth handles user's consent and access delegation. OIDC uses the OAuth flow to authenciate the user and retrieve identify information.
 
 
 ## SAML
 
 
-
-## OpenID
-
-
-
 ## Terms
 
 - `nonce` - Number Used Once - Unique and time-sensitive randomly generated value, used to prevent replay attacks
-- `opaque` - 
+- `opaque` - Randomly generated string to be returned by the client, so we know it's valid response
+
+
+## Useful Links
+- JWT - https://www.youtube.com/watch?v=7Q17ubqLfaM
+- 
