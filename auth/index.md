@@ -109,7 +109,19 @@
 - OAuth handles user's consent and access delegation. OIDC uses the OAuth flow to authenciate the user and retrieve identify information.
 
 
-## SAML
+## SAML (Security Assertion Markup Language)
+- SAML is similiar in purpose to OIDC, allowing you to access multiple applications (SPs - Service Providers) using 1 set of credentials, managed by an idP (Identity Provider).
+- Process:
+	- User tries to authenticate with application.
+ 	- Application makes a SAML request to the idP.
+  	- User is redirected to the SSO login page for the configured idP, based on the URI returned in the request.
+  	- idP authenticates the user and returns a SAML response to client.
+  	- Client sends the SAML response to the application for verification.
+
+ ![Workflow](/images/saml.png)
+
+- Typically, when configuring the SAML integration, the SP and idP will exchange metadata, which are XML files containing information about the system, such as endpoints.
+
 
 
 ## Terms
