@@ -28,7 +28,7 @@
 	opaque="5ccc069c403ebaf9f0171e9517f40e41"
 	```
 	- Upon receiving the response, the client will show the authentication window.
-	- Client submits credentials and request is sent back to server with `username`, `realm`, hashed password (md5) as `response`, as well as the `nonce` and `opaque` values.
+	- Client submits credentials and request is sent back to server with `username`, `realm`,  `response`, `nonce` and `opaque` values.
 	```
 	GET /assest HTTP/1.0
 	Host: localhost
@@ -39,6 +39,12 @@
 	response="6629fae49393a05397450978507c4ef1",
 	opaque="5ccc069c403ebaf9f0171e9517f40e41"
 	```
+ 	- The `response` is generated in the following way:
+    	```
+	HA1 = MD5(username:realm:password)
+	HA2 = MD5(method:digestURI)
+	response = MD5(HA1:nonce:HA2)
+     	```
 - So this is slightly more secure than Basic auth, however MD5 hashing is basically obsolete these days, so not much better.
 - It's recommended to use a more secure method, such as OAuth.
 
@@ -76,3 +82,10 @@
 
 
 ## OpenID
+
+
+
+## Terms
+
+- `nonce` - Number Used Once - Unique and time-sensitive randomly generated value, used to prevent replay attacks
+- `opaque` - 
