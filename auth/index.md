@@ -133,3 +133,8 @@
 ## Useful Links
 - JWT - https://www.youtube.com/watch?v=7Q17ubqLfaM
 - 
+
+
+## Notes
+
+- In PHP, when you use the auth option `CURLAUTH_ANY`, the initial request will be sent to the server without any auth method, and it will check the response headers for the available authentication methods. From there, it will choose the most secure one. So, for example if the end server responds that you can use Basic or Digest, it will pick Digest.
